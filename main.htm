@@ -1,0 +1,46 @@
+<html>
+<head>
+    <meta content="utf-8" http-equiv="encoding">
+    <title>Html-Qrcode Demo</title>
+    <link rel="stylesheet" type="text/css" href="page_management/main.css">
+     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="page_management/html5-qrcode.js"></script>
+    <script src="page_management/qr_scanner.js"></script>
+    <script type="module" src="page_management/SQLconnection.js"></script>
+    <?php include "page_management/db_connection.php";?>
+<body id="main-body" class="main">
+    <div id="user">
+        <input id="userName" type="text" name="Name" onchange="edit_name(this)">
+    </div>
+    <div id="scanner_container">
+        <div id="qr-reader"></div>
+    </div>
+    <div id="Report">
+        <div style="position: absolute; width: 10vw; float: left; height: 30vh;">
+            <div class="cells"  style="overflow: none;">Item</div>
+            <div class="cells"  style="overflow: none;">Name</div>
+            <div class="cells"  style="overflow: none;">Date</div>
+        </div>
+        <div style="position: relative; left: 15vw; width: 65vw; float: right; height: 30vh;">
+            <div class="cells" id="qr-reader-results"></div>
+            <div class="cells" id="em-name" ></div>
+            <div class="cells" id="current_date"></div>
+        </div>
+        <div id="remove" onclick="take_device()">Take</div>
+        <div id="submit" onclick="submit_device()">submit</div>
+        <div id="error"></div>
+    </div>
+</body>
+<script>
+		if (window.localStorage.getItem("Name") == null)
+			document.getElementById("Name").placeHolder = 'Enter Name';
+		else{
+			document.getElementById("userName").value = window.localStorage.getItem("Name");
+			document.getElementById("em-name").innerHTML = window.localStorage.getItem("Name");
+		}
+		var d = new Date();
+		document.getElementById("current_date").innerHTML = d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear();
+		console.log(d.getFullYear());
+</script>		
+</head>
+</html>
