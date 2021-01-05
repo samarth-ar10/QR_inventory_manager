@@ -1,4 +1,5 @@
 var stop_flag = 0;
+var ip_address = "http://127.0.0.1";
 function docReady(fn) {
 // see if DOM is already available
     if (document.readyState === "complete" || document.readyState === "interactive") {
@@ -42,20 +43,20 @@ function take_device(){
     var date = document.getElementById("current_date");
     $.ajax({
         type: "POST",
-        url: "http://127.0.0.1/QR_inventory_manager/page_management/sql_connect.php",
-        data: "item="+qr_result+"&name="+em_name+"&date="+date,
+        url: ip_address+"/QR_inventory_manager/page_management/sql_connect.php",
+        data: "item="+qr_result+"&name="+em_name+"&date="+date+"&method=1",
     }).done(function( msg ) {
         alert( "Data Saved: " + msg );
     });
 }
 function submit_device(){
-    var qr_result = document.getElementById("qr-reader-results");
-    var em_name = document.getElementById("em-name");
-    var date = document.getElementById("current_date");
+    var qr_result = document.getElementById("qr-reader-results").childNodes[0].innerHTML;
+    var em_name = document.getElementById("em-name").innerHTML;
+    var date = document.getElementById("current_date").innerHTML;
     $.ajax({
         type: "POST",
-        url: "http://127.0.0.1/QR_inventory_manager/page_management/sql_connect.php",
-        data: "item="+qr_result+"&name="+em_name+"&date="+date,
+        url: ip_address+"/QR_inventory_manager/page_management/sql_connect.php",
+        data: "item="+qr_result+"&name="+em_name+"&date="+date+"&method=1",
     }).done(function( msg ) {
         alert( "Data Saved: " + msg );
     });
